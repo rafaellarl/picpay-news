@@ -1,21 +1,17 @@
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import RootStack from './routes';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+      <NavigationContainer>
+        <SafeAreaView style={{ flex: 1 }}>
+          <RootStack />
+        </SafeAreaView>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
