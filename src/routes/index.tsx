@@ -2,12 +2,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
 import { NewsFeed, NewsDetails } from "../screens";
-import COLORS from "../assets/colors";
 
 const defaultConfigHeader = {
-    headerTintColor: COLORS.darkBackground,
+    headerTintColor: '#E8E8E8',
+    headerStyle: {
+      backgroundColor: '#1E1E1E'
+    },
     headerTitleStyle: {
         fontSize: 24,
+        fontWeight: '700' as const,
     }
 };
 
