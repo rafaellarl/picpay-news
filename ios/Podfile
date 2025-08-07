@@ -19,6 +19,7 @@ $RNFirebaseAsStaticFramework = true
 
 target 'PicPayNews' do
   config = use_native_modules!
+  $RNGoogleMobileAdsAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],

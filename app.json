@@ -1,4 +1,8 @@
 {
   "name": "PicPayNews",
-  "displayName": "PicPayNews"
+  "displayName": "PicPayNews",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4128753647068732~6719103316",
+    "ios_app_id": "ca-app-pub-4128753647068732~2668177669"
+  }
 }
