@@ -2,6 +2,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
 import { NewsFeed, NewsDetails } from "../screens";
+ 
+import { RootStackParamList } from "./types";
 
 const defaultConfigHeader = {
     headerTintColor: '#E8E8E8',
@@ -14,7 +16,7 @@ const defaultConfigHeader = {
     }
 };
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootStack() {
   return (
