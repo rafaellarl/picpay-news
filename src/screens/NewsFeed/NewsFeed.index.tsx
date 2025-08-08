@@ -4,7 +4,7 @@ import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 import { GenericError } from "../../components";
 
-import { Card, MainCard } from "./components";
+import { Card } from "./components";
 import useNewsFeed from "./useNewsFeed";
 import styles from './NewsFeed.styles';
 
@@ -15,23 +15,25 @@ const NewsFeed = () => {
         adUnitId,
         bannerRef,
         loadedNews,
-        onTryAgain,
         NEWS_PER_AD,
-        MAIN_NEWS_LIST,
+        goToNewsDetails,
+        onTryAgainGetNews,
+        // MAIN_NEWS_LIST,
     } = useNewsFeed();
 
     const renderCards = () => {
         return loadedNews.map((news: any, index: number) => {
+            const {id, title, image, publishedAt, description} = news;
             const hasAds = (index + 1) % NEWS_PER_AD === 0;
             return (
-                <View key={news.id}>
+                <View key={id}>
                     <View style={styles.cardsContainer}>
                         <Card
-                            title={news.title}
-                            image={news.image}
-                            description={news.description}
-                            publishedAt={news.publishedAt}
-                            actionNews={() => console.log('Navega pra tela de detalhes')}
+                            title={title}
+                            image={image}
+                            description={description}
+                            publishedAt={publishedAt}
+                            actionNews={() => goToNewsDetails({title, image})}
                         />
                     </View>
                     {hasAds && (
@@ -52,11 +54,11 @@ const NewsFeed = () => {
         return (
             <ScrollView style={styles.container}>
                 {/* TODO: Implementar carousel de notícias*/}
-                <MainCard
+                {/* <MainCard
                     title={MAIN_NEWS_LIST[0].title}
                     publishedAt={MAIN_NEWS_LIST[0].publishedAt}
                     image={MAIN_NEWS_LIST[0].image}
-                />
+                /> */}
                 <View>
                     {renderCards()}
                 </View>
@@ -69,7 +71,7 @@ const NewsFeed = () => {
     if (error) {
         <GenericError
             loading={loading}
-            onTryAgain={onTryAgain}
+            onTryAgain={onTryAgainGetNews}
         />
     };
 

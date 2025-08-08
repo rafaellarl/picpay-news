@@ -1,7 +1,10 @@
 import { Platform } from "react-native";
 import { useEffect, useRef, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BannerAd, TestIds, useForeground } from "react-native-google-mobile-ads";
 
+import { NewsDetailsRouteParams, RootStackParamList } from "../../routes/types";
 import useGetNewsApi from "../../api/hooks/useGetNewsApi";
 
 // TODO: Mock para a Carousel
@@ -28,9 +31,9 @@ const MAIN_NEWS_LIST = [
 
 const NEWS_PER_AD = 5;
 
-// TODO: Adicionar eventos de visualizaçao e click
 const useNewsFeed = () => {
     const { getNews, newsList, error, loading } = useGetNewsApi();
+    const { navigate } = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const bannerRef = useRef<BannerAd>(null);
     // TODO: Ajustar tipagem
     const [loadedNews, setLoadedNews] = useState<any>([]);
@@ -38,8 +41,13 @@ const useNewsFeed = () => {
     const adUnitIdTest = Platform.OS === 'ios' ? 'ca-app-pub-4128753647068732~2668177669' : 'ca-app-pub-4128753647068732~6719103316';
     const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : adUnitIdTest;
 
-    const onTryAgain = () => {
+    const onTryAgainGetNews = () => {
         console.log('Passou aqui');
+    };
+
+    const goToNewsDetails = ({image, title}: NewsDetailsRouteParams) => {
+        // TODO: Adicionar evento de click
+        navigate('NewsDetails', { title, image})
     };
 
     useForeground(() => {
@@ -47,6 +55,7 @@ const useNewsFeed = () => {
     });
 
     useEffect(() => {
+        // TODO: Adicionar evento de visualizaçao
         getNews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -63,9 +72,10 @@ const useNewsFeed = () => {
         adUnitId,
         bannerRef,
         loadedNews,
-        onTryAgain,
         NEWS_PER_AD,
         MAIN_NEWS_LIST,
+        goToNewsDetails,
+        onTryAgainGetNews,
     };
 };
 

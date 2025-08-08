@@ -11,10 +11,10 @@ interface ICard {
     actionNews: () => void;
 }
 
-const Card = ({ title, image, description, publishedAt }: ICard) => {
+const Card = ({ title, image, description, publishedAt, actionNews }: ICard) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={actionNews}>
                 <Image src={image} style={styles.image} />
                 <Text numberOfLines={2} ellipsizeMode='tail' style={styles.title}>{title}</Text>
                 <Text numberOfLines={2} style={styles.description}>{description}</Text>
