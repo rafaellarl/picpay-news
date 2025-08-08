@@ -2,48 +2,43 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
-        backgroundColor: '#1E1E1E',
-        borderRadius: 8,
         padding: 8,
-        marginBottom: 12
-    },
-    wrapper: {
-        flexDirection: 'row'
+        borderRadius: 8,
+        marginBottom: 12,
+        backgroundColor: '#1E1E1E',
     },
     image: {
-        width: 80,
-        height: 62,
+        width: '100%',
+        height: 108,
         borderRadius: 4
     },
-    newDetailsContainer: {
-        marginLeft: 8
-    },
-    newsDetailsTitle: {
-        fontSize: 12,
+    title: {
+        fontSize: 14,
+        marginTop: 8,
         color: '#888888',
         letterSpacing: -0.41,
-        marginTop: 4
     },
-    newsDetailsDescription: {
-        marginTop: 4,
+    description: {
+        marginTop: 8,
         fontSize: 16,
-        letterSpacing: -0.41,
         color: '#E8E8E8',
+        letterSpacing: -0.41,
     },
     newsDateContainer: {
+        marginTop: 13,
+        alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 13
     },
     newsDate: {
         fontSize: 10,
-        letterSpacing: -0.41,
         color: '#888888',
-
+        letterSpacing: -0.41,
     },
     favoriteButton: {
-        padding: 4
+        paddingLeft: 8,
+        paddingRight: 0,
+        paddingVertical: 8,
     },
     favoriteIcon: {
         width: 10.5,

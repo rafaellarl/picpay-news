@@ -3,21 +3,26 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './Card.styles';
 
-const Card = () => {
+interface ICard {
+    title: string;
+    image: string;
+    description: string;
+    publishedAt: string;
+    actionNews: () => void;
+}
+
+const Card = ({ title, image, description, publishedAt }: ICard) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
-                <View style={styles.wrapper}>
-                    <Image source={require('../../../../assets/images/image-test.png')} style={styles.image} />
-                    <View style={styles.newDetailsContainer}>
-                        <Text style={styles.newsDetailsTitle}>{'Título da notícia'}</Text>
-                        <Text style={styles.newsDetailsDescription}>{'Descrição breve da notícia'}</Text>
-                    </View>
-                </View>
+                <Image src={image} style={styles.image} />
+                <Text numberOfLines={2} ellipsizeMode='tail' style={styles.title}>{title}</Text>
+                <Text numberOfLines={2} style={styles.description}>{description}</Text>
                 <View style={styles.newsDateContainer}>
-                    <Text style={styles.newsDate}>{'Ago 06, 2025'}</Text>
-                    <TouchableOpacity style={styles.favoriteButton}>
-                        {/* Configurar para svg */}
+                    <Text style={styles.newsDate}>{publishedAt}</Text>
+                    {/* TODO: Colocar funcionalidade de adicionar aos favoritos */}
+                    <TouchableOpacity style={styles.favoriteButton} onPress={() => console.log('Add aos favoritos')}>
+                        {/* TODO: Configurar para svg */}
                         <Image source={require('../../../../assets/images/favorite-icon.png')} style={styles.favoriteIcon} />
                     </TouchableOpacity>
                 </View>
