@@ -18,6 +18,10 @@ interface IException extends IScreenView {
     fatal?: boolean;
 }
 
+interface ISuccess extends IScreenView {
+    description: string;
+};
+
 /*
     Decisão: Optei por manter funções separadas para cada tipo de evento, 
     mesmo sendo possível consolidar em uma única função com `eventName` como parâmetro.
@@ -57,5 +61,18 @@ export default class FirebaseAnalytics {
             description: description,
 		}
 		Analytics().logEvent('exception', parameters)
+	}
+
+    static saveEventSuccess = async ({
+		flow,
+        screenName,
+		description,
+	}: ISuccess) => {
+		const parameters = {
+			flow,
+			description,
+            screen_name: screenName,
+		}
+		Analytics().logEvent('success', parameters)
 	}
 };

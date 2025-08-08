@@ -48,4 +48,17 @@ describe('Firebase Analytics', () => {
             screen_name: screenName,
         })
     });
+
+        it('saveEventSuccess', () => {
+        const flow = 'flow'
+        const screenName = 'screen-name'
+        const description = 'success-message'
+
+        FirebaseAnalytics.saveEventSuccess({flow, screenName, description})
+        expect(mockLogEvent).toHaveBeenCalledWith('success', {
+            flow,
+            description,
+            screen_name: screenName,
+        })
+    });
 });
