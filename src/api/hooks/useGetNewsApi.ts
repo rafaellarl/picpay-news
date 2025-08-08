@@ -74,7 +74,42 @@ const MOCK = [
     title: "David Fincher começa a filmar \"The Continuing Adventures of Cliff Booth\" em Los Angeles",
     description: "Publicado em 2025-07-28 20:45, por filmSPOT A produção do filme centrado na personagem de Brad Pitt em \"Era Uma Vez em Hollywood\", arrancou esta segunda-feira na cidade norte-americana. Começou hoje, ...[+11 chars]...[Upgrade subscription plan]",
     image: "https://filmspot.com.pt/images/media/14144.jpg"
-  }
+  },
+  {
+    id: 10,
+    publishedAt: "2025-07-31T17:07:56Z",
+    title: "Som: o que é, como é produzido, curiosidades - Escola Kids",
+    description: "O som é uma onda. Ele é produzido por meio de oscilações ou vibrações que ocorrem em meios físicos. É usado na comunicação, na navegação e até em exames. . ....[Upgrade subscription plan]",
+    image: "https://static.escolakids.uol.com.br/2025/06/ilustracao-de-um-menino-com-a-mao-na-orelha-captando-ondas-sonoras-ou-de-som.jpg"
+  },
+  {
+    id: 11,
+    publishedAt: "2025-07-31T17:07:06Z",
+    title: "Mariana Xavier revela que está namorando à distância e pede dicas para seguidores; veja quem é ele",
+    description: "Mariana Xavier revelou que está namorando à distância. O diretor de filmes publicitários Guido Antonini é o novo amor da atriz, que pediu dicas para seus seguidores no Instagram que formam casais que ...[+13 chars]...[Upgrade subscription plan]",
+    image: "https://www.estadao.com.br/resizer/v2/X2YIS5SZA5GYTLEOHJ2GBPPATU.jpg?quality=80&auth=59adec19ff8b3a52959cf375728f895d294195881677ead497d4cbf5f00ced24&width=1200&height=630&smart=true"
+  },
+  {
+    id: 12,
+    publishedAt: "2025-07-31T17:07:06Z",
+    title: "Jamie Lee Curtis confirma versão de \"Crime, Disse Ela\" para o cinema",
+    description: "Publicado em 2025-07-27 10:17, por filmSPOT A atriz vencedora de um Óscar interpretará a personagem de Jessica Fletcher, celebrizada por Angela Lansbury. Jamie Lee Curtis confirmou que protagonizará u...[+7 chars]...[Upgrade subscription plan]",
+    image: "https://filmspot.com.pt/images/media/14139.jpg"
+  },
+  {
+    id: 13,
+    publishedAt: "2025-07-31T17:07:00Z",
+    title: "Fuvest 2026: novas datas de atendimento especializado - Brasil Escola",
+    description: "Fuvest anuncia novas datas para solicitação de atendimento especializado no Vestibular 2026 São oferecidos mais de 8 mil vagas de graduação para concorrência no Vestibular. . ....[Upgrade subscription plan]",
+    image: "https://s5.static.brasilescola.uol.com.br/vestibular/2025/05/vestibular-2026-da-fuvest.jpg"
+  },
+  {
+    id: 14,
+    publishedAt: "2025-07-31T13:07:46Z",
+    title: "\"It: Welcome To Derry\" - a origem do tal palhaço",
+    description: "A HBO Max apresentou novas cenas da série que conta a origem de Pennywise. Baseada no universo criado por Stephen King a série de terror \"It: Welcome To Derry\" tem um novo teaser trailer, apresentado ...[+14 chars]...[Upgrade subscription plan]",
+    image: "https://filmspot.com.pt/images/media/14142.jpg"
+  },
 ];
 
 const useGetNewsApi = (): IUseGetNewApi => {
