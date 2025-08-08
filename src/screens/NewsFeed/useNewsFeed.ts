@@ -4,8 +4,9 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BannerAd, TestIds, useForeground } from "react-native-google-mobile-ads";
 
-import { NewsDetailsRouteParams, RootStackParamList } from "../../routes/types";
 import useGetNewsApi from "../../api/hooks/useGetNewsApi";
+import FirebaseAnalytics from "../../utils/FirebaseAnalytics";
+import { NewsDetailsRouteParams, RootStackParamList } from "../../routes/types";
 
 // TODO: Mock para a Carousel
 const MAIN_NEWS_LIST = [
@@ -55,7 +56,7 @@ const useNewsFeed = () => {
     });
 
     useEffect(() => {
-        // TODO: Adicionar evento de visualizaçao
+        FirebaseAnalytics.saveScreenView({ screenName: 'new-feed', flow: 'news'});
         getNews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

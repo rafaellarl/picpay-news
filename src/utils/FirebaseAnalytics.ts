@@ -35,7 +35,7 @@ export default class FirebaseAnalytics {
             screen_name: screenName,
         }
 
-        Analytics().logScreenView(parameters);
+        Analytics().logEvent('screen_view', parameters);
     };
 
     static saveSelectContent = async ({ screenName, flow, contentType }: ISelectContent) => {

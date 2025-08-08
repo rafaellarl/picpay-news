@@ -1,11 +1,9 @@
 import FirebaseAnalytics from "./FirebaseAnalytics";
 
 const mockLogEvent = jest.fn()
-const mockLogScreenView = jest.fn()
 
 jest.mock('@react-native-firebase/analytics', () => () => ({
 	logEvent: mockLogEvent,
-	logScreenView: mockLogScreenView,
 }))
 
 describe('Firebase Analytics', () => {
@@ -16,7 +14,7 @@ describe('Firebase Analytics', () => {
         const screenName = 'screen-name'
 
         FirebaseAnalytics.saveScreenView({flow, screenName})
-        expect(mockLogScreenView).toHaveBeenCalledWith({
+        expect(mockLogEvent).toHaveBeenCalledWith('screen_view', {
             flow,
             screen_name: screenName,
         })
