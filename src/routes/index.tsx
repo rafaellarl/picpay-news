@@ -1,26 +1,31 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
+import { CustomHeader } from "../components";
 import { NewsFeed, NewsDetails } from "../screens";
  
 import { RootStackParamList } from "./types";
 
-const defaultConfigHeader = {
-    headerTintColor: '#E8E8E8',
-    headerStyle: {
-      backgroundColor: '#1E1E1E'
-    },
-    headerTitleStyle: {
-        fontSize: 24,
-        fontWeight: '700' as const,
-    }
-};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootStack() {
   return (
-    <Stack.Navigator initialRouteName="NewsFeed" screenOptions={defaultConfigHeader}>
+    <Stack.Navigator
+      initialRouteName="NewsFeed"
+      screenOptions={{
+        header: ({ route, options }) => (
+          <CustomHeader
+            title={options.title || route.name}
+            showBackButton={route.name !== 'NewsFeed'}
+          />
+        ),
+        contentStyle: {
+          backgroundColor: '#1E1E1E',
+        },
+      }}
+    >
       <Stack.Screen name="NewsFeed" component={NewsFeed} options={{ title: 'PicPay News'}} />
       <Stack.Screen name="NewsDetails" component={NewsDetails} />
     </Stack.Navigator>
