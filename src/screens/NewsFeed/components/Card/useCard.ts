@@ -8,7 +8,7 @@ const useCard = (id: number) => {
   const handleNewsCardFavorite = () => {
     setIsFavorite(!isFavorite);
     FirebaseAnalytics.saveSelectContent({
-      flow: 'flow',
+      flow: 'news',
       screenName: 'news-feed',
       contentType: `card-${id}`,
     });

@@ -193,7 +193,6 @@ describe('NewsFeed', () => {
     });
 
     it('Should register event select content when user press in Card component', async () => {
-      const cardSeleted = MOCK_RESPONSE.data.results[2];
       mockedFetchNews.mockResolvedValue(MOCK_RESPONSE);
       const {getByTestId} = renderScreen();
       await waitFor(() => {
@@ -227,9 +226,15 @@ describe('NewsFeed', () => {
       mockedFetchNews.mockResolvedValue(MOCK_RESPONSE);
       const {getByTestId} = renderScreen();
 
-      // TODO: Assim que adicionar o toast é necessário atualizar esse teste.
       await waitFor(() => {
-        getByTestId('test-id-favorite-button-card-4');
+        fireEvent.press(getByTestId('test-id-favorite-button-card-4'));
+        // TODO: Aqui esta dando falso positivo, a chamada esta sendo realizada mais de 19 vezes
+        expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
+        expect(mockedSaveSelectContent).toHaveBeenCalledWith({
+          flow: 'news',
+          screenName: 'news-feed',
+          contentType: 'card-4',
+        });
       });
     });
 
@@ -243,8 +248,8 @@ describe('NewsFeed', () => {
         fireEvent.press(getByText('Tentar novamente'));
         // TODO: Verificar por que a chamada esta acontecendo 20 vezes
         // expect(mockedFetchNews).toHaveBeenCalledTimes(1);
-        // TODO: Aqui esta dando falso positivo, mesmo trocando a quantidade vezes que a chamada é realizada ele continua passando no teste
-        // expect(mockedEventException).toHaveBeenCalledTimes(1);
+        // TODO: Aqui esta dando falso positivo, a chamada esta sendo realizada mais de 19 vezes
+        expect(mockedEventException).toHaveBeenCalledTimes(1);
         expect(mockedEventException).toHaveBeenCalledWith({
           flow: 'news',
           screenName: 'news-feed',
