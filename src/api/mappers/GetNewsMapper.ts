@@ -1,6 +1,7 @@
 class GetNewsMapper {
   static toDomain(data: any) {
     const {results} = data;
+
     const resultsFormatted = results.map((result: any, index: number) => {
       return {
         id: index,
