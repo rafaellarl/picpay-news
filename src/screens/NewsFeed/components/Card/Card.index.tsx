@@ -4,6 +4,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './Card.styles';
 
 interface ICard {
+  id: number;
   title: string;
   image: string;
   description: string;
@@ -11,10 +12,17 @@ interface ICard {
   actionNews: () => void;
 }
 
-const Card = ({title, image, description, publishedAt, actionNews}: ICard) => {
+const Card = ({
+  title,
+  image,
+  description,
+  publishedAt,
+  actionNews,
+  id,
+}: ICard) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={actionNews}>
+      <TouchableOpacity onPress={actionNews} testID={`test-id-card-${id}`}>
         <Image src={image} style={styles.image} />
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
           {title}
@@ -24,11 +32,12 @@ const Card = ({title, image, description, publishedAt, actionNews}: ICard) => {
         </Text>
         <View style={styles.newsDateContainer}>
           <Text style={styles.newsDate}>{publishedAt}</Text>
-          {/* TODO: Colocar funcionalidade de adicionar aos favoritos */}
           <TouchableOpacity
+            testID={`test-id-favorite-button-card-${id}`}
             style={styles.favoriteButton}
-            onPress={() => console.log('Add aos favoritos')}>
-            {/* TODO: Configurar para svg */}
+            onPress={() =>
+              console.log(`Adicionado o card ${id} aos favoritos`)
+            }>
             <Image
               source={require('../../../../assets/images/favorite-icon.png')}
               style={styles.favoriteIcon}
