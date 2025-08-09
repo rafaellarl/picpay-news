@@ -31,7 +31,7 @@ export const Description = styled.Text`
   line-height: 20px;
   font-weight: 400;
   color: #ffffff;
-  padding-top: 32;
+  padding-top: 32px;
 `;
 
 export const DescriptionBold = styled(Description)`

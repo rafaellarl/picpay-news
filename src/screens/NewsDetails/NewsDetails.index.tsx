@@ -9,14 +9,20 @@ import {
   Description,
   DescriptionBold,
 } from './NewsDetails.styles';
-import useNewsDetails from './useDetails';
+import useNewsDetails from './useNewsDetails';
 
+/*
+  Sugestão: Em uma api bem formatada podemos passar o body da noticía por rota também, neste caso como é uma api free o body ficou limitado.
+  Por esse motivo coloquei um texto gerado por IA falando sobre programar nativo e em frameworks multiplataformas.
+
+  Colocando um Banner de anúncio para estudo da lib e apresentar outros formas de apresentar anúncios.
+*/
 const NewsDetails = () => {
   const {image, title, adUnitId, bannerRef} = useNewsDetails();
 
   return (
     <Wrapper>
-      <Image src={image} />
+      <Image src={image} testID="test-id-news-image" />
       <Container>
         <Title>{title}</Title>
         <DescriptionBold>{'Texto gerado por IA'}</DescriptionBold>
