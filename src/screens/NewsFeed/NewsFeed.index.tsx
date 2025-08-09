@@ -8,6 +8,8 @@ import {Card} from './components';
 import useNewsFeed from './useNewsFeed';
 import styles from './NewsFeed.styles';
 
+// TODO: Criar componente global de anúncio usando o NativAds disponível na documentaçao.
+// DOC: https://docs.page/invertase/react-native-google-mobile-ads/native-ads
 const NewsFeed = () => {
   const {
     error,
@@ -29,11 +31,12 @@ const NewsFeed = () => {
         <View key={id}>
           <View style={styles.cardsContainer}>
             <Card
+              id={id}
               title={title}
               image={image}
               description={description}
               publishedAt={publishedAt}
-              actionNews={() => goToNewsDetails({title, image})}
+              actionNews={() => goToNewsDetails(image, title, id)}
             />
           </View>
           {hasAds && (
@@ -50,29 +53,35 @@ const NewsFeed = () => {
     });
   };
 
-  if (loadedNews) {
+  // TODO: Adicionar registro de eventos de erros
+  if (error) {
+    return (
+      <GenericError
+        flow="news"
+        loading={loading}
+        screenName="news-feed"
+        errorMessage={error.message}
+        onTryAgain={onTryAgainGetNews}
+      />
+    );
+  }
+
+  if (loadedNews.length > 0) {
     return (
       <ScrollView style={styles.container}>
-        {/* TODO: Implementar carousel de notícias*/}
-        {/* <MainCard
-                    title={MAIN_NEWS_LIST[0].title}
-                    publishedAt={MAIN_NEWS_LIST[0].publishedAt}
-                    image={MAIN_NEWS_LIST[0].image}
-                /> */}
         <View>{renderCards()}</View>
       </ScrollView>
     );
   }
 
-  // TODO: Adicionar registro de eventos de erros
-  if (error) {
-    <GenericError loading={loading} onTryAgain={onTryAgainGetNews} />;
-  }
-
   // TODO: Ve se da tempo de criar um componente skeleton
   return (
     <View style={[styles.container, styles.loadingContainer]}>
-      <ActivityIndicator color="#FFFFFF" size="large" />
+      <ActivityIndicator
+        color="#FFFFFF"
+        size="large"
+        testID="test-id-loading"
+      />
     </View>
   );
 };
