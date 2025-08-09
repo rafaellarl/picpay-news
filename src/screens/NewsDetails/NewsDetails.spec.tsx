@@ -23,6 +23,11 @@ describe('NewsDetails', () => {
     });
   });
 
+  it('should match snapshot on initial render', () => {
+    const {toJSON} = renderScreen();
+    expect(toJSON()).toMatchSnapshot();
+  });
+
   it('Should render news details', () => {
     const {getByText, getByTestId} = renderScreen();
 
