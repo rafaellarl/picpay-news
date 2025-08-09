@@ -14,13 +14,11 @@ const NewsFeed = () => {
   const {
     error,
     loading,
-    adUnitId,
     bannerRef,
     loadedNews,
     NEWS_PER_AD,
     goToNewsDetails,
     onTryAgainGetNews,
-    // MAIN_NEWS_LIST,
   } = useNewsFeed();
 
   const renderCards = () => {
@@ -39,15 +37,6 @@ const NewsFeed = () => {
               actionNews={() => goToNewsDetails(image, title, id)}
             />
           </View>
-          {hasAds && (
-            <View style={styles.adsContainer}>
-              <BannerAd
-                ref={bannerRef}
-                unitId={adUnitId}
-                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-              />
-            </View>
-          )}
         </View>
       );
     });
@@ -74,7 +63,9 @@ const NewsFeed = () => {
     );
   }
 
-  // TODO: Ve se da tempo de criar um componente skeleton
+  /*
+    Sugestão: Implementar componente Skeleton Screen para uma experiência de loading mais fluida e profissional.
+  */
   return (
     <View style={[styles.container, styles.loadingContainer]}>
       <ActivityIndicator
