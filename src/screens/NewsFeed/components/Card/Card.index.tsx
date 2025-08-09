@@ -2,6 +2,10 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 import styles from './Card.styles';
+import useCard from './useCard';
+
+const favoriteIconDefault = require('../../../../assets/images/favorite-icon.png');
+const favoriteIconSelected = require('../../../../assets/images/favorite-icon-selected.png');
 
 interface ICard {
   id: number;
@@ -13,13 +17,14 @@ interface ICard {
 }
 
 const Card = ({
+  id,
   title,
   image,
+  actionNews,
   description,
   publishedAt,
-  actionNews,
-  id,
 }: ICard) => {
+  const {handleNewsCardFavorite, isFavorite} = useCard(id);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={actionNews} testID={`test-id-card-${id}`}>
@@ -35,11 +40,9 @@ const Card = ({
           <TouchableOpacity
             testID={`test-id-favorite-button-card-${id}`}
             style={styles.favoriteButton}
-            onPress={() =>
-              console.log(`Adicionado o card ${id} aos favoritos`)
-            }>
+            onPress={handleNewsCardFavorite}>
             <Image
-              source={require('../../../../assets/images/favorite-icon.png')}
+              source={isFavorite ? favoriteIconSelected : favoriteIconDefault}
               style={styles.favoriteIcon}
             />
           </TouchableOpacity>
