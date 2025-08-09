@@ -6,29 +6,7 @@ import {BannerAd, TestIds, useForeground} from 'react-native-google-mobile-ads';
 
 import useGetNewsApi from '../../api/hooks/useGetNewsApi';
 import FirebaseAnalytics from '../../utils/FirebaseAnalytics';
-import {NewsDetailsRouteParams, RootStackParamList} from '../../routes/types';
-
-// TODO: Mock para a Carousel
-const MAIN_NEWS_LIST = [
-  {
-    title: 'PicPay une conta PJ e PF em um único app',
-    publishedAt: 'Ago 07, 2025',
-    image: require('../../assets/images/one-news-picpay.png'),
-    action: () => console.log('Notícia principal'),
-  },
-  {
-    title: 'PicPay retoma sua operação de cripto',
-    publishedAt: 'Jul 17, 2025',
-    image: require('../../assets/images/two-news-picpay.png'),
-    action: () => console.log('Notícia principal'),
-  },
-  {
-    title: 'PicPay lança previdência privada no app',
-    publishedAt: 'Mar 27, 2025',
-    image: require('../../assets/images/three-news-picpay.png'),
-    action: () => console.log('Notícia principal'),
-  },
-];
+import {RootStackParamList} from '../../routes/types';
 
 const NEWS_PER_AD = 5;
 
@@ -47,11 +25,15 @@ const useNewsFeed = () => {
   const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : adUnitIdTest;
 
   const onTryAgainGetNews = () => {
-    console.log('Passou aqui');
+    getNews();
   };
 
-  const goToNewsDetails = ({image, title}: NewsDetailsRouteParams) => {
-    // TODO: Adicionar evento de click
+  const goToNewsDetails = (image: string, title: string, id: number) => {
+    FirebaseAnalytics.saveSelectContent({
+      screenName: 'new-feed',
+      flow: 'news',
+      contentType: `news-card-${id}`,
+    });
     navigate('NewsDetails', {title, image});
   };
 
@@ -62,7 +44,6 @@ const useNewsFeed = () => {
   useEffect(() => {
     FirebaseAnalytics.saveScreenView({screenName: 'new-feed', flow: 'news'});
     getNews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -78,7 +59,6 @@ const useNewsFeed = () => {
     bannerRef,
     loadedNews,
     NEWS_PER_AD,
-    MAIN_NEWS_LIST,
     goToNewsDetails,
     onTryAgainGetNews,
   };

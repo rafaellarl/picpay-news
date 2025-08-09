@@ -8,4 +8,5 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['lcov', 'text-summary'],
   coveragePathIgnorePatterns: ['/node_modules/'],
+  setupFiles: ['./node_modules/react-native-google-mobile-ads/jest.setup.ts'],
 };
