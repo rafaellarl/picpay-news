@@ -1,20 +1,32 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView, View} from 'react-native';
-import {BannerAd, BannerAdSize} from 'react-native-google-mobile-ads';
+import {ActivityIndicator, Image, ScrollView, Text, View} from 'react-native';
 
-import {GenericError} from '../../components';
+import {GenericError, NativeAds} from '../../components';
 
 import {Card} from './components';
 import useNewsFeed from './useNewsFeed';
 import styles from './NewsFeed.styles';
 
-// TODO: Criar componente global de anúncio usando o NativAds disponível na documentaçao.
-// DOC: https://docs.page/invertase/react-native-google-mobile-ads/native-ads
+// TODO: Anuncios
+const mockAd = [
+  {
+    imageUrl: require('../../assets/images/two-news-picpay.png'),
+    url: 'https://blog.picpay.com/conta-pj-pf-app/',
+  },
+  {
+    imageUrl: require('../../assets/images/two-news-picpay.png'),
+    url: 'https://blog.picpay.com/como-investir-tesouro-direto/',
+  },
+  {
+    imageUrl: require('../../assets/images/three-news-picpay.png'),
+    url: 'https://blog.picpay.com/operacao-cripto/',
+  },
+];
+
 const NewsFeed = () => {
   const {
     error,
     loading,
-    bannerRef,
     loadedNews,
     NEWS_PER_AD,
     goToNewsDetails,
@@ -58,7 +70,8 @@ const NewsFeed = () => {
   if (loadedNews.length > 0) {
     return (
       <ScrollView style={styles.container}>
-        <View>{renderCards()}</View>
+        <NativeAds flow={'news'} screenName={'news-feed'}></NativeAds>
+        {renderCards()}
       </ScrollView>
     );
   }

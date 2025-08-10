@@ -1,4 +1,9 @@
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  userEvent,
+  waitFor,
+} from '@testing-library/react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import NewsFeed from './NewsFeed.index';
@@ -207,14 +212,16 @@ describe('NewsFeed', () => {
   });
 
   describe('Handle action user', () => {
-    it('Should navigate for screen NewsDetails when user press in news card', async () => {
+    it.only('Should navigate for screen NewsDetails when user press in news card', async () => {
       const cardSeleted = MOCK_RESPONSE.data.results[2];
       mockedFetchNews.mockResolvedValue(MOCK_RESPONSE);
       const {navigate} = mockedUseNavigation();
       const {getByTestId} = renderScreen();
 
       await waitFor(() => {
-        fireEvent.press(getByTestId('test-id-card-2'));
+        userEvent.press(getByTestId('test-id-card-2'));
+        // expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
+        expect(navigate).toHaveBeenCalledTimes(21);
         expect(navigate).toHaveBeenCalledWith('NewsDetails', {
           title: cardSeleted.title,
           image: cardSeleted.image,

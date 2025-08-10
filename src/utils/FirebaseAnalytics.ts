@@ -22,6 +22,10 @@ interface ISuccess extends IScreenView {
   description: string;
 }
 
+interface ISelectAds extends IScreenView {
+  idAds: string;
+}
+
 /*
     Decisão: Optei por manter funções separadas para cada tipo de evento, 
     mesmo sendo possível consolidar em uma única função com `eventName` como parâmetro.
@@ -78,5 +82,14 @@ export default class FirebaseAnalytics {
       screen_name: screenName,
     };
     Analytics().logEvent('success', parameters);
+  };
+
+  static saveEventSelectAds = async ({flow, idAds, screenName}: ISelectAds) => {
+    const parameters = {
+      flow,
+      id_ads: idAds,
+      screen_name: screenName,
+    };
+    Analytics().logEvent('select_content', parameters);
   };
 }
