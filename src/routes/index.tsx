@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {SCREENS} from './constants';
 import {defaultScreenProps} from './config';
-import NewsScreens from './screens/NewsScreens';
+import {NewsRouteGroup} from './groups/NewsRouteGroup';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,17 +17,7 @@ function RootStack() {
       screenOptions={defaultScreenProps}
       initialRouteName={SCREENS.NEWS.FEED}>
       {/* Grupo News */}
-      <Stack.Group>
-        <Stack.Screen
-          name={SCREENS.NEWS.FEED}
-          component={NewsScreens.Feed}
-          options={{title: 'PicPay News'}}
-        />
-        <Stack.Screen
-          name={SCREENS.NEWS.DETAILS}
-          component={NewsScreens.Details}
-        />
-      </Stack.Group>
+      {NewsRouteGroup()}
 
       {/* Futuros grupos */}
     </Stack.Navigator>
