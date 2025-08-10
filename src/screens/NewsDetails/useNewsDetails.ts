@@ -1,10 +1,9 @@
 import {useEffect, useRef} from 'react';
-import {Platform} from 'react-native';
-import {useRoute} from '@react-navigation/native';
-import {BannerAd, TestIds, useForeground} from 'react-native-google-mobile-ads';
 
-import {NewsDetailsScreenRouteProp} from '../../../routes/types/newsTypes';
-import FirebaseAnalytics from '../../../utils/FirebaseAnalytics';
+import {useRoute} from '@react-navigation/native';
+import {NewsDetailsScreenRouteProp} from '../../routes/types';
+import {Platform} from 'react-native';
+import {BannerAd, TestIds, useForeground} from 'react-native-google-mobile-ads';
 
 const useNewsDetails = () => {
   const {
@@ -23,10 +22,7 @@ const useNewsDetails = () => {
   });
 
   useEffect(() => {
-    FirebaseAnalytics.saveScreenView({
-      flow: 'new',
-      screenName: 'new-details',
-    });
+    // TODO: Adicionar eventos de vizualização
   }, []);
 
   return {

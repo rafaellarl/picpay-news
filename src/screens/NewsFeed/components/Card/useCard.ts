@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import FirebaseAnalytics from '../../../../../utils/FirebaseAnalytics';
+import FirebaseAnalytics from '../../../../utils/FirebaseAnalytics';
 
 const useCard = (id: number) => {
   const [isFavorite, setIsFavorite] = useState(false);
