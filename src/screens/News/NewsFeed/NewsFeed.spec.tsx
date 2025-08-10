@@ -7,8 +7,8 @@ import {
 import {useNavigation} from '@react-navigation/native';
 
 import NewsFeed from './NewsFeed.index';
-import {fetchNews} from '../../api/resources/news.api';
-import FirebaseAnalytics from '../../utils/FirebaseAnalytics';
+import {fetchNews} from '../../../api/resources/news.api';
+import FirebaseAnalytics from '../../../utils/FirebaseAnalytics';
 
 const MOCK_RESPONSE = {
   data: {

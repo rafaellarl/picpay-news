@@ -3,9 +3,9 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {BannerAd} from 'react-native-google-mobile-ads';
 
-import useGetNewsApi from '../../api/hooks/useGetNewsApi';
-import FirebaseAnalytics from '../../utils/FirebaseAnalytics';
-import {RootStackParamList} from '../../routes/types';
+import useGetNewsApi from '../../../api/hooks/useGetNewsApi';
+import FirebaseAnalytics from '../../../utils/FirebaseAnalytics';
+import {RootStackParamList} from '../../../routes/types';
 
 const NEWS_PER_AD = 5;
 

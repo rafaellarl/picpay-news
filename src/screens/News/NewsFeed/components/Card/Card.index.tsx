@@ -4,8 +4,8 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './Card.styles';
 import useCard from './useCard';
 
-const favoriteIconDefault = require('../../../../assets/images/favorite-icon.png');
-const favoriteIconSelected = require('../../../../assets/images/favorite-icon-selected.png');
+const favoriteIconDefault = require('../../../../../assets/images/favorite-icon.png');
+const favoriteIconSelected = require('../../../../../assets/images/favorite-icon-selected.png');
 
 interface ICard {
   id: number;

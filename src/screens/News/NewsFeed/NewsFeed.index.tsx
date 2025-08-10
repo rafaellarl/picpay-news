@@ -1,24 +1,24 @@
 import React from 'react';
-import {ActivityIndicator, Image, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, ScrollView, View} from 'react-native';
 
-import {GenericError, NativeAds} from '../../components';
+import {GenericError, NativeAds} from '../../../components';
 
 import {Card} from './components';
-import useNewsFeed from './useNewsFeed';
 import styles from './NewsFeed.styles';
+import useNewsFeed from './useNewsFeed';
 
 // TODO: Anuncios
 const mockAd = [
   {
-    imageUrl: require('../../assets/images/two-news-picpay.png'),
+    imageUrl: require('../../../assets/images/two-news-picpay.png'),
     url: 'https://blog.picpay.com/conta-pj-pf-app/',
   },
   {
-    imageUrl: require('../../assets/images/two-news-picpay.png'),
+    imageUrl: require('../../../assets/images/two-news-picpay.png'),
     url: 'https://blog.picpay.com/como-investir-tesouro-direto/',
   },
   {
-    imageUrl: require('../../assets/images/three-news-picpay.png'),
+    imageUrl: require('../../../assets/images/three-news-picpay.png'),
     url: 'https://blog.picpay.com/operacao-cripto/',
   },
 ];
