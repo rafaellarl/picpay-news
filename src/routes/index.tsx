@@ -1,34 +1,35 @@
-/* eslint-disable react/no-unstable-nested-components */
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {CustomHeader} from '../components';
-import {NewsFeed, NewsDetails} from '../screens';
+import {SCREENS} from './constants';
+import {defaultScreenProps} from './config';
+import NewsScreens from './screens/NewsScreens';
 
-import {RootStackParamList} from './types';
+const Stack = createNativeStackNavigator();
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
+/*
+  Melhorias: Aqui pode ser adicionado um splash screen que vai ser renderizada enquanto o carregamento
+  de fonts customizadas e os assets é finalizada.
+*/
 function RootStack() {
   return (
     <Stack.Navigator
-      initialRouteName="NewsFeed"
-      screenOptions={{
-        header: ({route, options}) => (
-          <CustomHeader
-            title={options.title || route.name}
-            showBackButton={route.name !== 'NewsFeed'}
-          />
-        ),
-        contentStyle: {
-          backgroundColor: '#1E1E1E',
-        },
-      }}>
-      <Stack.Screen
-        name="NewsFeed"
-        component={NewsFeed}
-        options={{title: 'PicPay News'}}
-      />
-      <Stack.Screen name="NewsDetails" component={NewsDetails} />
+      screenOptions={defaultScreenProps}
+      initialRouteName={SCREENS.NEWS.FEED}>
+      {/* Grupo News */}
+      <Stack.Group>
+        <Stack.Screen
+          name={SCREENS.NEWS.FEED}
+          component={NewsScreens.Feed}
+          options={{title: 'PicPay News'}}
+        />
+        <Stack.Screen
+          name={SCREENS.NEWS.DETAILS}
+          component={NewsScreens.Details}
+        />
+      </Stack.Group>
+
+      {/* Futuros grupos */}
     </Stack.Navigator>
   );
 }
