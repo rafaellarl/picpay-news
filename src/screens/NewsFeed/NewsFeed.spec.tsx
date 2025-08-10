@@ -200,32 +200,36 @@ describe('NewsFeed', () => {
     it('Should register event select content when user press in Card component', async () => {
       mockedFetchNews.mockResolvedValue(MOCK_RESPONSE);
       const {getByTestId} = renderScreen();
-      await waitFor(() => {
-        fireEvent.press(getByTestId('test-id-card-2'));
-        expect(mockedSaveSelectContent).toHaveBeenCalledWith({
-          flow: 'news',
-          screenName: 'new-feed',
-          contentType: 'news-card-2',
-        });
+
+      const card = await waitFor(() => getByTestId('test-id-card-2'));
+
+      fireEvent.press(card);
+
+      expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
+      expect(mockedSaveSelectContent).toHaveBeenCalledWith({
+        flow: 'news',
+        screenName: 'new-feed',
+        contentType: 'news-card-2',
       });
     });
   });
 
   describe('Handle action user', () => {
-    it.only('Should navigate for screen NewsDetails when user press in news card', async () => {
+    it('Should navigate for screen NewsDetails when user press in news card', async () => {
       const cardSeleted = MOCK_RESPONSE.data.results[2];
       mockedFetchNews.mockResolvedValue(MOCK_RESPONSE);
       const {navigate} = mockedUseNavigation();
       const {getByTestId} = renderScreen();
 
       await waitFor(() => {
-        userEvent.press(getByTestId('test-id-card-2'));
-        // expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
-        expect(navigate).toHaveBeenCalledTimes(21);
-        expect(navigate).toHaveBeenCalledWith('NewsDetails', {
-          title: cardSeleted.title,
-          image: cardSeleted.image,
-        });
+        fireEvent.press(getByTestId('test-id-card-2'));
+      });
+
+      expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
+      expect(navigate).toHaveBeenCalledTimes(1);
+      expect(navigate).toHaveBeenCalledWith('NewsDetails', {
+        title: cardSeleted.title,
+        image: cardSeleted.image,
       });
     });
 
@@ -235,13 +239,13 @@ describe('NewsFeed', () => {
 
       await waitFor(() => {
         fireEvent.press(getByTestId('test-id-favorite-button-card-4'));
-        // TODO: Aqui esta dando falso positivo, a chamada esta sendo realizada mais de 19 vezes
-        expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
-        expect(mockedSaveSelectContent).toHaveBeenCalledWith({
-          flow: 'news',
-          screenName: 'news-feed',
-          contentType: 'card-4',
-        });
+      });
+
+      expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
+      expect(mockedSaveSelectContent).toHaveBeenCalledWith({
+        flow: 'news',
+        screenName: 'news-feed',
+        contentType: 'card-4',
       });
     });
 
@@ -253,15 +257,14 @@ describe('NewsFeed', () => {
 
       await waitFor(() => {
         fireEvent.press(getByText('Tentar novamente'));
-        // TODO: Verificar por que a chamada esta acontecendo 20 vezes
-        // expect(mockedFetchNews).toHaveBeenCalledTimes(1);
-        // TODO: Aqui esta dando falso positivo, a chamada esta sendo realizada mais de 19 vezes
-        expect(mockedEventException).toHaveBeenCalledTimes(1);
-        expect(mockedEventException).toHaveBeenCalledWith({
-          flow: 'news',
-          screenName: 'news-feed',
-          description: 'Erro ao buscar as notícias',
-        });
+      });
+
+      expect(mockedFetchNews).toHaveBeenCalledTimes(2);
+      expect(mockedEventException).toHaveBeenCalledTimes(1);
+      expect(mockedEventException).toHaveBeenCalledWith({
+        flow: 'news',
+        screenName: 'news-feed',
+        description: 'Erro ao buscar as notícias',
       });
     });
   });
