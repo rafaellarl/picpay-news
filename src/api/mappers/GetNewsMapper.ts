@@ -1,14 +1,20 @@
+import {formatDateToShortPtBr} from '../../utils';
+
+import {INews} from '../types';
+
 class GetNewsMapper {
-  static toDomain(data: any) {
+  static toDomain(data: any): INews[] {
     const {results} = data;
 
     const resultsFormatted = results.map((result: any, index: number) => {
+      const publishedAtFormatted = formatDateToShortPtBr(result.published_at);
+
       return {
         id: index,
-        publishedAt: result.published_at,
+        image: result.image,
         title: result.title,
         description: result.description,
-        image: result.image,
+        publishedAt: publishedAtFormatted,
       };
     });
     return resultsFormatted;
