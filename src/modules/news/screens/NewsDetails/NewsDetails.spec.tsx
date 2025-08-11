@@ -2,12 +2,24 @@ import {useRoute} from '@react-navigation/native';
 import {render} from '@testing-library/react-native';
 
 import NewsDetails from './NewsDetails.index';
+import {FirebaseAnalytics} from '../../../../utils';
 
 jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn(),
 }));
 
+jest.mock('@react-native-firebase/analytics', () => ({
+  default: jest.fn(() => ({
+    logEvent: jest.fn(),
+  })),
+}));
+
+jest.mock('../../../../utils/analytics/FirebaseAnalytics', () => ({
+  saveScreenView: jest.fn(),
+}));
+
 const mockedUseRoute = useRoute as jest.Mock;
+const mockedSaveScreenView = FirebaseAnalytics.saveScreenView as jest.Mock;
 
 const renderScreen = () => render(<NewsDetails />);
 
@@ -43,5 +55,14 @@ describe('NewsDetails', () => {
     getByText(
       'Em suma, a decisão entre programação nativa e híbrida envolve ponderar performance, custo e facilidade de manutenção. Compreender as vantagens de cada abordagem, assim como dominar ferramentas como React Native e Flutter, permite ao desenvolvedor tomar decisões mais estratégicas. Experimente baixar um ambiente de desenvolvimento móvel, como o Android Studio ou o Visual Studio Code com plugins específicos para mobile, e teste na prática qual abordagem melhor se adapta aos seus projetos. O universo do desenvolvimento mobile está repleto de oportunidades para inovar e transformar ideias em aplicativos eficientes e impactantes.',
     );
+  });
+
+  it('Should register event screen view', () => {
+    renderScreen();
+    expect(mockedSaveScreenView).toHaveBeenCalledTimes(1);
+    expect(mockedSaveScreenView).toHaveBeenCalledWith({
+      flow: 'news',
+      screenName: 'news_details',
+    });
   });
 });
