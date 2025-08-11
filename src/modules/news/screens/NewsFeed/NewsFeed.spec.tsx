@@ -69,14 +69,14 @@ jest.mock('@react-navigation/native', () => ({
   useNavigation: jest.fn(),
 }));
 
-jest.mock('../../utils/analytics/FirebaseAnalytics', () => ({
+jest.mock('../../../../utils/analytics/FirebaseAnalytics', () => ({
   saveScreenView: jest.fn(),
   saveSelectContent: jest.fn(),
   saveEventException: jest.fn(),
 }));
 
-jest.mock('../../api/resources/news.api', () => {
-  const actual = jest.requireActual('../../api/resources/news.api');
+jest.mock('../../../../api/resources/news.api', () => {
+  const actual = jest.requireActual('../../../../api/resources/news.api');
   return {
     __esModule: true,
     ...actual,
@@ -193,7 +193,7 @@ describe('NewsFeed', () => {
       renderScreen();
       expect(mockedSaveScreenView).toHaveBeenCalledTimes(1);
       expect(mockedSaveScreenView).toHaveBeenCalledWith({
-        screenName: 'new-feed',
+        screenName: 'news_feed',
         flow: 'news',
       });
     });
@@ -209,8 +209,8 @@ describe('NewsFeed', () => {
       expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
       expect(mockedSaveSelectContent).toHaveBeenCalledWith({
         flow: 'news',
-        screenName: 'new-feed',
-        contentType: 'news-card-2',
+        screenName: 'news_feed',
+        contentType: 'card-2',
       });
     });
   });
@@ -245,8 +245,8 @@ describe('NewsFeed', () => {
       expect(mockedSaveSelectContent).toHaveBeenCalledTimes(1);
       expect(mockedSaveSelectContent).toHaveBeenCalledWith({
         flow: 'news',
-        screenName: 'news-feed',
-        contentType: 'card-4',
+        screenName: 'news_feed',
+        contentType: 'favorite-card-4',
       });
     });
 
@@ -264,7 +264,7 @@ describe('NewsFeed', () => {
       expect(mockedEventException).toHaveBeenCalledTimes(1);
       expect(mockedEventException).toHaveBeenCalledWith({
         flow: 'news',
-        screenName: 'news-feed',
+        screenName: 'news_feed',
         description: 'Erro ao buscar as notícias',
       });
     });

@@ -146,7 +146,7 @@ exports[`NewsFeed sanpshot test should match snapshot with data 1`] = `
                   }
                 }
               >
-                2025-07-31T17:07:56Z
+                Jul 31, 2025
               </Text>
               <View
                 accessibilityState={
@@ -314,7 +314,7 @@ exports[`NewsFeed sanpshot test should match snapshot with data 1`] = `
                   }
                 }
               >
-                2025-07-31T17:07:06Z
+                Jul 31, 2025
               </Text>
               <View
                 accessibilityState={
@@ -482,7 +482,7 @@ exports[`NewsFeed sanpshot test should match snapshot with data 1`] = `
                   }
                 }
               >
-                2025-07-31T17:07:06Z
+                Jul 31, 2025
               </Text>
               <View
                 accessibilityState={
@@ -650,7 +650,7 @@ exports[`NewsFeed sanpshot test should match snapshot with data 1`] = `
                   }
                 }
               >
-                2025-07-31T17:07:00Z
+                Jul 31, 2025
               </Text>
               <View
                 accessibilityState={
@@ -818,7 +818,7 @@ exports[`NewsFeed sanpshot test should match snapshot with data 1`] = `
                   }
                 }
               >
-                2025-07-31T13:07:46Z
+                Jul 31, 2025
               </Text>
               <View
                 accessibilityState={
