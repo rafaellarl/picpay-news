@@ -10,7 +10,7 @@ export type NewsStackParamList = {
   NewsDetails: NewsDetailsRouteParams;
 };
 
-export type NewsDetailsScreenRouteProp = RouteProp<
+export type NewsDetailsScreenRouteProps = RouteProp<
   NewsStackParamList,
   'NewsDetails'
 >;
