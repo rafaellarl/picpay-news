@@ -85,10 +85,9 @@ Não há variáveis `.env` neste projeto.
 
 # 🧩 Dependências nativas e integrações
 
-- Firebase: arquivos `google-services.json` (Android) e `GoogleService-Info.plist` (iOS) estão versionados no repositório.
-- Google Ads: IDs de apps/placements estão no projeto.
-- Reactotron: Configurado no projeto para ajudar no processo de desenvolvimento
-- Google AdMob: Para controle dos ads
+- [Firebase](https://console.firebase.google.com/u/2/project/pp-news-8a4f0/overview): arquivos `google-services.json` (Android) e `GoogleService-Info.plist` (iOS) estão versionados no repositório.
+- [Google Ads](https://admob.google.com/v2/apps/list?_gl=1*1v1koxy*_ga*MjEwOTk2NzM2LjE3NTQ1NjgzNTI.*_ga_6R1K8XRD9P*czE3NTQ5MTMyMzUkbzIkZzAkdDE3NTQ5MTMyMzYkajU5JGwwJGgw&sac=true&authuser=2): IDs de apps/placements estão no projeto.
+- [Reactotron](https://github.com/infinitered/reactotron): Configurado no projeto para ajudar no processo de desenvolvimento
 
 # 🎯 Estratégia de intercalação de Ads
 
