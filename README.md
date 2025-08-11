@@ -90,18 +90,6 @@ Não há variáveis `.env` neste projeto.
 - Reactotron: Configurado no projeto para ajudar no processo de desenvolvimento
 - Google AdMob: Para controle dos ads
 
-# 🧯 Problemas (iOS • RN 0.80+ • NativeAds)
-
-**Resumo:** há uma incompatibilidade do `react-native-google-mobile-ads` com o React Native 0.80+ (Fabric), afetando Native Ads no iOS.
-**Sintomas:** erros como “View config not found” ou “Property does not exist” decorrentes de props nativas (ex.: responseId via RCT_EXPORT_VIEW_PROPERTY) que não se alinham ao novo sistema de renderização.
-**Impacto:** bloqueia build/execução de Native Ads no iOS. Android segue funcionando normalmente.
-**Caminhos:**
-
-- ⬇️ Downgrade do RN para 0.76.0 (compatível com a lib atual).
-- ⏳ Aguardar atualização da lib com suporte a Fabric (issue pública: [#777](https://github.com/invertase/react-native-google-mobile-ads/issues/777)).
-
-**Status report:** problema identificado no dia 10; não houve tempo hábil para efetuar downgrade ou troca de biblioteca antes do corte.
-
 # 🎯 Estratégia de intercalação de Ads
 
 ## 📡 Rede/SDK utilizada
@@ -204,3 +192,15 @@ Em um ambiente de produção real, normalmente se adota um padrão único para c
 - Cobertura alta geral; pontos a evoluir: components/NativeAds, NewsDetails (branches), alguns utils (branches).
 
 ![alt text](image.png)
+
+# 🧯 Problemas (iOS • RN 0.80+ • NativeAds)
+
+**Resumo:** há uma incompatibilidade do `react-native-google-mobile-ads` com o React Native 0.80+ (Fabric), afetando Native Ads no iOS.
+**Sintomas:** erros como “View config not found” ou “Property does not exist” decorrentes de props nativas (ex.: responseId via RCT_EXPORT_VIEW_PROPERTY) que não se alinham ao novo sistema de renderização.
+**Impacto:** bloqueia build/execução de Native Ads no iOS. Android segue funcionando normalmente.
+**Caminhos:**
+
+- ⬇️ Downgrade do RN para 0.76.0 (compatível com a lib atual).
+- ⏳ Aguardar atualização da lib com suporte a Fabric (issue pública: [#777](https://github.com/invertase/react-native-google-mobile-ads/issues/777)).
+
+**Status report:** problema identificado no dia 10; não houve tempo hábil para efetuar downgrade ou troca de biblioteca antes do corte.
