@@ -1,11 +1,13 @@
 import {StyleSheet} from 'react-native';
 
+import Colors from '../../../../assets/colors';
+
 export default StyleSheet.create({
   container: {
     padding: 8,
     borderRadius: 8,
     marginBottom: 12,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: Colors.darkGray,
   },
   image: {
     width: '100%',
@@ -15,13 +17,13 @@ export default StyleSheet.create({
   title: {
     fontSize: 14,
     marginTop: 8,
-    color: '#888888',
+    color: Colors.gray,
     letterSpacing: -0.41,
   },
   description: {
     marginTop: 8,
     fontSize: 16,
-    color: '#E8E8E8',
+    color: Colors.lightGray,
     letterSpacing: -0.41,
   },
   newsDateContainer: {
@@ -32,7 +34,7 @@ export default StyleSheet.create({
   },
   newsDate: {
     fontSize: 10,
-    color: '#888888',
+    color: Colors.gray,
     letterSpacing: -0.41,
   },
   favoriteButton: {

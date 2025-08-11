@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button as ButtonLibPaper} from 'react-native-paper';
 
+import Colors from '../../assets/colors';
+
 interface IButton {
   label: string;
   loading: boolean;
@@ -24,8 +26,8 @@ const Button = ({
       loading={loading}
       onPress={onPress}
       disabled={disabled}
-      buttonColor={variant === 'contained' ? '#FFFFFF' : 'transparent'}
-      textColor={variant === 'contained' ? '#111111' : '#FFFFFF'}>
+      buttonColor={variant === 'contained' ? Colors.white : 'transparent'}
+      textColor={variant === 'contained' ? Colors.black : Colors.white}>
       {!loading ? label : ''}
     </ButtonLibPaper>
   );

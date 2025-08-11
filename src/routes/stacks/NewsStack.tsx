@@ -1,10 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import Colors from '../../assets/colors';
+import {NewsStackParamList} from '../types';
 import {CustomHeader} from '../../components';
 import {NewsFeed, NewsDetails} from '../../modules/news/screens';
-
-import {NewsStackParamList} from '../types';
 import {labels as newsLabels} from '../../modules/news/labels';
 
 const Stack = createNativeStackNavigator<NewsStackParamList>();
@@ -21,7 +21,7 @@ export function NewsStack() {
           />
         ),
         contentStyle: {
-          backgroundColor: '#1E1E1E',
+          backgroundColor: Colors.darkGray,
         },
       }}>
       <Stack.Screen
