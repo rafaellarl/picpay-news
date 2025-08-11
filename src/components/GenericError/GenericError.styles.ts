@@ -14,8 +14,8 @@ export default StyleSheet.create({
   errorMessage: {
     fontSize: 24,
     paddingTop: 16,
-    color: '#FFFFFF',
     fontWeight: '700',
+    color: '#FFFFFF',
   },
   buttonContainer: {
     marginVertical: 16,

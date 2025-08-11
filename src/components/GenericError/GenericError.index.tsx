@@ -5,6 +5,8 @@ import Button from '../Button/Button.index';
 
 import styles from './GenericError.styles';
 import useGenericError, {IUseGenericError} from './useGenericError';
+import {labels} from '../../labels';
+import {TEST_IDS_COMPONENTS} from '../../constants';
 
 interface IGenericError extends IUseGenericError {
   loading: boolean;
@@ -16,7 +18,7 @@ const GenericError = ({
   onTryAgain,
   screenName,
   errorMessage,
-  label = 'Tentar novamente',
+  label = labels.components.genericError.button,
 }: IGenericError) => {
   const {handleOnTryAgain} = useGenericError({
     flow,
@@ -29,18 +31,20 @@ const GenericError = ({
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <Image
+          testID={TEST_IDS_COMPONENTS.genericError.image}
           source={require('../../assets/images/x-circle.png')}
-          testID="test-id-image-error"
         />
-        <Text style={styles.errorMessage}>{'Algo deu errado.'}</Text>
+        <Text style={styles.errorMessage}>
+          {labels.components.genericError.description}
+        </Text>
       </View>
       <View style={styles.buttonContainer}>
         <Button
           label={label}
-          onPress={handleOnTryAgain}
-          disabled={loading}
           loading={loading}
+          disabled={loading}
           variant="contained"
+          onPress={handleOnTryAgain}
         />
       </View>
     </View>

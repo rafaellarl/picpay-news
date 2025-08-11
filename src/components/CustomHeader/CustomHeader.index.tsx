@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 
+import {TEST_IDS_COMPONENTS} from '../../constants';
 import styles from './CustomHeader.styles';
 
 interface ICustomHeaderProps {
@@ -21,15 +22,17 @@ const CustomHeader = ({
         <TouchableOpacity
           onPress={goBack}
           style={styles.backButton}
-          testID="test-id-header-back-button">
+          testID={TEST_IDS_COMPONENTS.customHeader.backButton}>
           <Image
-            source={require('../../assets/images/arrow-left-white.png')}
             style={styles.backIcon}
+            source={require('../../assets/images/arrow-left-white.png')}
           />
         </TouchableOpacity>
       )}
 
-      <Text style={styles.title} testID="test-id-header-title">
+      <Text
+        style={styles.title}
+        testID={TEST_IDS_COMPONENTS.customHeader.title}>
         {title}
       </Text>
       <View style={styles.rightPlaceholder} />

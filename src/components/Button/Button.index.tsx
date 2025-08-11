@@ -10,11 +10,11 @@ interface IButton {
 }
 
 const Button = ({
+  label,
+  onPress,
   variant,
   loading,
   disabled,
-  onPress,
-  label,
   ...props
 }: IButton) => {
   return (

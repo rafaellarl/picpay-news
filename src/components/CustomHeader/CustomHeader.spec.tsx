@@ -1,5 +1,5 @@
-import {fireEvent, render, screen} from '@testing-library/react-native';
 import {useNavigation} from '@react-navigation/native';
+import {fireEvent, render, screen} from '@testing-library/react-native';
 
 import CustomHeader from './CustomHeader.index';
 

@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
-import FirebaseAnalytics from '../../utils/FirebaseAnalytics';
+import {FirebaseAnalytics} from '../../utils';
+import {labels} from '../../labels';
 
 export interface IUseGenericError {
   flow: string;
@@ -14,7 +15,7 @@ const useGenericError = ({
   screenName,
   onTryAgain,
   errorMessage,
-  label = 'Tentar novamente',
+  label = labels.components.genericError.button,
 }: IUseGenericError) => {
   useEffect(() => {
     FirebaseAnalytics.saveEventException({

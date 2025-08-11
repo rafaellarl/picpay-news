@@ -4,10 +4,10 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 16,
+    backgroundColor: '#1E1E1E',
     justifyContent: 'space-between',
     height: Platform.OS === 'ios' ? 44 : 56,
-    backgroundColor: '#1E1E1E',
-    paddingHorizontal: 16,
   },
   backButton: {
     padding: 16,
@@ -18,10 +18,10 @@ export default StyleSheet.create({
     tintColor: '#E8E8E8',
   },
   title: {
-    color: '#E8E8E8',
-    fontSize: 16,
-    textAlign: 'center',
     flex: 1,
+    fontSize: 16,
+    color: '#E8E8E8',
+    textAlign: 'center',
     marginHorizontal: 8,
   },
   rightPlaceholder: {
