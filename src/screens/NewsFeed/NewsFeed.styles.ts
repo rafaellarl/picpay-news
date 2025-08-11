@@ -10,9 +10,6 @@ export default StyleSheet.create({
   cardsContainer: {
     paddingHorizontal: 16,
   },
-  adsContainer: {
-    marginBottom: 12,
-  },
   loadingContainer: {
     alignContent: 'center',
     justifyContent: 'center',

@@ -2,16 +2,34 @@ import React, {useEffect, useState} from 'react';
 import {Image, Platform, Text} from 'react-native';
 import {
   NativeAd,
-  NativeAdEventType,
+  TestIds,
   NativeAdView,
   NativeAsset,
   NativeAssetType,
-  NativeMediaView,
-  TestIds,
+  NativeAdEventType,
 } from 'react-native-google-mobile-ads';
+import {useNavigation} from '@react-navigation/native';
+
 import FirebaseAnalytics from '../../utils/FirebaseAnalytics';
 
-const NativeAds = ({flow, screenName, children}: any) => {
+import styles from './NativeAds.styles';
+
+type NativeAdsProps = {
+  flow: string;
+  title?: string;
+  imageSource: any;
+  screenName: string;
+  showTitle?: boolean;
+};
+
+const NativeAds = ({
+  flow,
+  title,
+  screenName,
+  imageSource,
+  showTitle = true,
+}: NativeAdsProps) => {
+  const {navigate} = useNavigation();
   const [nativeAd, setNativeAd] = useState<NativeAd>();
   const adUnitIdTest =
     Platform.OS === 'ios'
@@ -23,23 +41,19 @@ const NativeAds = ({flow, screenName, children}: any) => {
     NativeAd.createForAdRequest(adUnitId)
       .then(setNativeAd)
       .catch(error => {
-        /*
-          Melhoria: Integrar com ferramentas de análises de erro para o front como por exemplo o Sentry
-        */
         FirebaseAnalytics.saveEventException({
           flow,
           screenName,
           description: error.message,
         });
       });
-  }, []);
+  }, [adUnitId, flow, screenName]);
 
   useEffect(() => {
     if (!nativeAd) return;
     const listener = nativeAd.addAdEventListener(
       NativeAdEventType.CLICKED,
       () => {
-        console.log('nativeAd: ', nativeAd);
         FirebaseAnalytics.saveEventSelectAds({
           flow,
           screenName,
@@ -50,33 +64,27 @@ const NativeAds = ({flow, screenName, children}: any) => {
     return () => {
       listener.remove();
     };
-  }, [nativeAd]);
+  }, [nativeAd, flow, screenName]);
 
-  if (!nativeAd) {
-    return null;
-  }
+  if (!nativeAd) return null;
 
   return (
-    <NativeAdView
-      nativeAd={nativeAd}
-      style={{
-        alignContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        marginBottom: 16,
-      }}>
-      {/* Titulo */}
-      <NativeAsset assetType={NativeAssetType.IMAGE}>
-        <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-          {nativeAd.headline}
-        </Text>
-      </NativeAsset>
-      {/* Imagem personalizada */}
+    <NativeAdView nativeAd={nativeAd} style={styles.naviteAdsContainer}>
+      {showTitle && (
+        <NativeAsset assetType={NativeAssetType.IMAGE}>
+          <Text style={styles.titleAds} testID="test-id-title-ads">
+            {title ? title : nativeAd.headline}
+          </Text>
+        </NativeAsset>
+      )}
+
       <NativeAsset assetType={NativeAssetType.IMAGE}>
         <Image
-          source={require('../../assets/images/two-news-picpay.png')}
+          source={
+            typeof imageSource === 'string' ? {uri: imageSource} : imageSource
+          }
+          style={styles.imageAds}
           testID="test-id-image-ads"
-          style={{borderRadius: 8, height: 120, width: '100%'}}
         />
       </NativeAsset>
     </NativeAdView>

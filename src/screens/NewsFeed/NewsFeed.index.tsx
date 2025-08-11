@@ -4,24 +4,8 @@ import {ActivityIndicator, Image, ScrollView, Text, View} from 'react-native';
 import {GenericError, NativeAds} from '../../components';
 
 import {Card} from './components';
-import useNewsFeed from './useNewsFeed';
 import styles from './NewsFeed.styles';
-
-// TODO: Anuncios
-const mockAd = [
-  {
-    imageUrl: require('../../assets/images/two-news-picpay.png'),
-    url: 'https://blog.picpay.com/conta-pj-pf-app/',
-  },
-  {
-    imageUrl: require('../../assets/images/two-news-picpay.png'),
-    url: 'https://blog.picpay.com/como-investir-tesouro-direto/',
-  },
-  {
-    imageUrl: require('../../assets/images/three-news-picpay.png'),
-    url: 'https://blog.picpay.com/operacao-cripto/',
-  },
-];
+import useNewsFeed from './useNewsFeed';
 
 const NewsFeed = () => {
   const {
@@ -49,12 +33,24 @@ const NewsFeed = () => {
               actionNews={() => goToNewsDetails(image, title, id)}
             />
           </View>
+          {hasAds && (
+            <NativeAds
+              flow={'news'}
+              screenName={'news-feed'}
+              title="PicPay retoma sua operação de cripto"
+              // Imagem local
+              imageSource={require('../../assets/images/two-news-picpay.png')}
+              // Imagem externa com url
+              // imageSource={
+              //   'https://static.escolakids.uol.com.br/2025/06/ilustracao-de-um-menino-com-a-mao-na-orelha-captando-ondas-sonoras-ou-de-som.jpg'
+              // }
+            />
+          )}
         </View>
       );
     });
   };
 
-  // TODO: Adicionar registro de eventos de erros
   if (error) {
     return (
       <GenericError
@@ -68,12 +64,7 @@ const NewsFeed = () => {
   }
 
   if (loadedNews.length > 0) {
-    return (
-      <ScrollView style={styles.container}>
-        <NativeAds flow={'news'} screenName={'news-feed'}></NativeAds>
-        {renderCards()}
-      </ScrollView>
-    );
+    return <ScrollView style={styles.container}>{renderCards()}</ScrollView>;
   }
 
   /*
